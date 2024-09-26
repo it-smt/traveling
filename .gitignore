@@ -1,5 +1,8 @@
 venv/
-media/
+**/media/
 .idea/
-*/*.sqlite3
-__pycache__/
+**/db.sqlite3
+**/__pycache__/
+**/wsl_venv
+.vscode
+.env

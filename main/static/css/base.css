@@ -1,0 +1,25 @@
+:root {
+	--color-darkblue: #141732;
+	--color-lightblue: #5b62ff;
+	--color-lightblue2: #dbdcff;
+	--color-purple: #444766;
+	--color-white: #ffffff;
+	--color-lightgray: #c8d7ff;
+	--color-lightergray: #dfe0ec;
+	--color-lightestgray: #f7f7fc;
+}
+
+body {
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	display: flex;
+	flex-direction: column;
+}
+
+.container {
+	display: flex;
+	padding: 30px 50px;
+	max-width: 1600px !important;
+	margin: 0 auto;
+}
+
+@media (max-width: )

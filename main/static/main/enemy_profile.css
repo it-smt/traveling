@@ -1,0 +1,195 @@
+:root {
+    --color-darkblue: #141732;
+    --color-lightblue: #5B62FF;
+    --color-lightblue2: #dbdcff;
+    --color-purple: #444766;
+    --color-white: #FFFFFF;
+    --color-lightgray: #C8D7FF;
+    --color-lightergray: #DFE0EC;
+    --color-lightestgray: #F7F7FC;
+    --color-lightbluehover: #323ae6;
+}
+
+body {
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--color-lightestgray);
+}
+
+main {
+    margin: 30px auto;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 1150px;
+    height: auto;
+    box-sizing: border-box;
+    gap: 20px;
+}
+
+.section {
+    flex: 1 1 100%;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    max-width: calc(50% - 20px);
+}
+
+.profile {
+    text-align: center;
+    align-items: center;
+}
+
+.profile h2 {
+    text-align: left;
+    align-items: center;
+}
+
+.profile-details img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: #ddd;
+    margin-bottom: 20px;
+}
+
+.profile-details .name-rating {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.profile-details .name {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--color-darkblue);
+}
+
+.profile-details .rating {
+    color: var(--color-lightblue);
+    font-size: 24px;
+}
+
+.profile-details .info {
+    color: var(--color-purple);
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.profile-details .about {
+    color: var(--color-darkblue) !important;
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+.comments h2, .profile h2 {
+    color: var(--color-darkblue);
+    font-size: 32px;
+    margin-bottom: 40px;
+}
+
+.comments h2::first-letter, .profile h2::first-letter {
+    color: var(--color-lightblue);
+    font-size: 32px;
+    margin-bottom: 40px;
+}
+
+.comments-list {
+    flex-grow: 1;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    padding-right: 10px;
+}
+
+.comment {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: var(--color-lightgray);
+}
+
+.comment .author {
+    font-weight: bold;
+    color: #3a3a3a;
+}
+
+.comment .date {
+    color: #aaa;
+    font-size: 12px;
+}
+
+.comment .text {
+    margin-top: 10px;
+    color: #3a3a3a;
+}
+
+.show-more {
+    text-align: center;
+}
+
+.show-more button {
+    padding: 10px 20px;
+    background-color: var(--color-lightblue);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.show-more button:hover {
+    background-color: var(--color-lightbluehover);
+}
+
+.hidden {
+    display: none;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 10px;
+    box-sizing: border-box;
+}
+
+.btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #45a049;
+}
+
+.profile-icon {
+    font-size: 100px;
+    color: var(--color-lightblue);
+}
+
+@media (max-width: 1200px) {
+    main {
+        max-width: 100%;
+        padding: 0 20px;
+    }
+    .section {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .section {
+        max-width: 100%;
+    }
+}

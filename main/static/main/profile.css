@@ -1,0 +1,455 @@
+.content {
+	background-color: #f7f7f7;
+	flex: 1 1 100%;
+}
+.container {
+	display: block;
+}
+.content__title {
+	font-size: 40px;
+	margin: 0 0 20px 0;
+	color: rgb(43, 43, 43);
+}
+.content__row {
+	display: flex;
+}
+.content__main {
+	margin: 0 20px 0 0;
+}
+.content__travels {
+}
+
+.main {
+	width: 100%;
+	box-sizing: border-box;
+	background-color: white;
+	padding: 40px;
+	border-radius: 15px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.main__photo {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin: 0 0 41px 0;
+}
+.main__photo-preview {
+	display: flex;
+	align-items: center;
+}
+.main__photo-preview img {
+	display: block;
+	width: 145px;
+	height: 143px;
+	object-fit: cover;
+	border-radius: 50%;
+	overflow: hidden;
+}
+.main__photo-text {
+	display: block;
+	margin: 0 0 0 25px;
+}
+.main__photo-text p {
+	color: rgb(129, 129, 129);
+	font-size: 20px;
+	line-height: 23px;
+	text-transform: uppercase;
+}
+.main__photo-text span {
+	display: inline-block;
+	color: rgb(156, 156, 156);
+	font-size: 16px;
+	line-height: 18px;
+	position: relative;
+	padding: 0 0 0 30px;
+	margin: 8px 0 0 0;
+}
+.main__photo-text span::before {
+	content: "";
+	background-image: url("../img/icons/alert-orange.svg");
+	width: 25px;
+	height: 25px;
+	position: absolute;
+	top: -5px;
+	left: 0;
+}
+
+.main__photo-change {
+	padding: 8px 20px;
+	background-color: #efefef;
+	color: rgb(60, 60, 60);
+	font-size: 20px;
+	border-radius: 20px;
+	line-height: 23px;
+	transition: all 0.3s ease 0s;
+}
+
+.main__photo-change:hover {
+	background-color: #dddddd;
+}
+
+.main__photo-input {
+	display: none;
+}
+
+.main__fields {
+}
+.main__field {
+}
+
+.field {
+	border-top: 1px solid rgb(203, 202, 202);
+	padding: 31px 20px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	position: relative;
+}
+.field__email {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	right: 70px;
+}
+/* .field__email::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: -21px;
+	width: 20px;
+	height: 20px;
+	background-image: url("../img/icons/alert-orange.svg");
+	background-size: cover;
+} */
+/* .field__email::after {
+	content: "Не подтверждена";
+	color: rgb(179, 179, 179);
+	font-size: 18px;
+	line-height: 21px;
+} */
+.field__info {
+	display: flex;
+	align-items: center;
+}
+.field__title {
+	color: rgb(203, 202, 202);
+	font-size: 17px;
+	font-weight: 700;
+	line-height: 20px;
+	width: 233px;
+	text-transform: uppercase;
+}
+.field__value {
+	color: rgb(66, 66, 66);
+	font-size: 17px;
+	line-height: 20px;
+}
+.field__value input {
+	padding: 5px 10px;
+	border-radius: 8px;
+	border: 1px solid rgb(0, 0, 0, 0.2);
+}
+.field__input {
+	display: none;
+}
+
+.field__action img {
+	cursor: pointer;
+}
+
+.travels {
+	padding: 20px;
+	border-radius: 15px;
+	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+	background: rgb(255, 255, 255);
+	min-width: 470px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.travels__switch {
+	border-radius: 15px;
+	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+	background: rgb(247, 247, 252);
+	display: flex;
+	align-items: center;
+	text-wrap: nowrap;
+	max-width: 600px;
+	width: 100%;
+}
+.travels__switch-item {
+	cursor: pointer;
+	color: rgb(9, 9, 9);
+	font-size: 17px;
+	font-weight: 700;
+	line-height: 20px;
+	background-color: rgb(247, 247, 252);
+	border-radius: 20px;
+	transition: all 0.3s ease 0s;
+	padding: 10px;
+	width: 100%;
+	text-align: center;
+}
+/* .travels__switch-item:first-child {
+	padding: 10px 87px;
+}
+.travels__switch-item:last-child {
+	padding: 10px 58px;
+} */
+.travels__switch-item._active {
+	color: rgb(255, 255, 255);
+	border-radius: 15px;
+	background: rgb(255, 87, 78);
+}
+
+.travels__cards {
+	width: 100%;
+}
+
+.travels__card {
+	margin: 20px 0 0 0;
+}
+
+.card {
+	padding: 20px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	border-radius: 20px;
+	background-color: #f7f7fc;
+}
+
+.card__datetimes {
+	display: flex;
+	align-items: center;
+	margin: 0 0 10px 0;
+}
+.card__datetimes > p {
+	display: flex;
+	align-items: center;
+	font-size: 20px;
+	line-height: 90%;
+	font-weight: 600;
+}
+.card__datetimes > p > span {
+	display: block;
+	font-size: 10px;
+	background-color: #ffffff;
+	padding: 0 7px;
+	border-radius: 50px;
+	margin: 0 0 0 5px;
+}
+
+.card__datetimes > span {
+	background-image: url(../img/icons/dots.svg);
+	height: 15px;
+	width: 100%;
+	margin: 0 10px;
+}
+
+.card__cities {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 0 0 20px 0;
+}
+
+.card__cities p {
+	color: #555555;
+}
+
+.card__block-2 {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background-color: #e8e8f7;
+	padding: 10px;
+	border-radius: 15px;
+	margin: 0 0 10px 0;
+}
+
+.card__driver {
+	display: flex;
+	align-items: center;
+}
+
+.card__driver-avatar {
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+	object-fit: cover;
+	object-position: center;
+	margin: 0 10px 0 0;
+}
+
+.card__driver-info {
+}
+.card__driver-info p {
+	margin: 0 0 5px 0;
+	font-weight: 600;
+	line-height: 90%;
+}
+.card__driver-info span {
+	color: #5e5e5e;
+}
+
+.card__price {
+	font-weight: 600;
+	font-size: 20px;
+}
+.card__price::before {
+	content: "₽";
+	margin: 0 5px 0 0;
+	padding: 1px 5px;
+	font-size: 14px;
+	color: #fff;
+	background-color: #808080;
+	border-radius: 5px;
+}
+.card__price::after {
+	content: "₽";
+	margin: 0 0 0 5px;
+}
+
+.card__block-3 {
+	color: #5c5c5c;
+	text-align: end;
+	margin: 0 0 10px 0;
+}
+
+.card__block-4 {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.card__rules {
+	display: flex;
+}
+.card__rule {
+	width: 20px;
+	height: 20px;
+	margin: 0 5px 0 0;
+	position: relative;
+}
+.card__rule:last-child {
+	margin: 0;
+}
+.card__rule img {
+	width: 100%;
+	height: 100%;
+}
+#tripTooltip {
+	position: absolute;
+	left: 0;
+	top: -23px;
+	padding: 2px 5px;
+	border-radius: 5px;
+	text-wrap: nowrap;
+	background-color: #8d8d8d;
+	color: #fff;
+	opacity: 0;
+	transition: all 0.3s ease 0s;
+	pointer-events: none;
+}
+
+.card__rule:hover #tripTooltip {
+	display: block;
+	opacity: 1;
+}
+
+.card__cancel {
+	background-color: rgb(255, 87, 78);
+	color: #ffffff;
+	text-transform: uppercase;
+	font-size: 16px;
+	padding: 10px 40px;
+	border-radius: 20px;
+	cursor: pointer;
+}
+.card__cancel:hover {
+	background-color: rgb(255, 109, 100);
+}
+
+@media (max-width: 1220px) {
+	.content__row {
+		flex-direction: column;
+	}
+	.content__main {
+		margin: 0 0 20px 0;
+	}
+}
+@media (max-width: 768px) {
+	.container {
+		padding: 30px 20px;
+	}
+}
+@media (max-width: 700px) {
+	.main__photo-preview {
+		flex-direction: column;
+	}
+	.main__photo-text {
+		margin: 20px 0 0 0;
+	}
+	.field {
+		padding: 20px 10px;
+		position: relative;
+	}
+	.field__info {
+		width: 100%;
+		flex-direction: column;
+	}
+	.field__title {
+		width: 100%;
+		text-align: center;
+		margin: 0 0 10px 0;
+	}
+	.field__action {
+		opacity: 0.5;
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		padding: 10px;
+	}
+	.field__input {
+		text-align: right;
+		border: 1px solid #ccc;
+		font-size: 17px;
+		padding: 6px 10px;
+		border-radius: 15px;
+	}
+	.travels {
+		min-width: 100%;
+	}
+}
+@media (max-width: 500px) {
+	.main__photo {
+		flex-direction: column;
+		align-items: center;
+	}
+	.main__photo-change {
+		margin: 20px 0 0 0;
+	}
+}
+@media (max-width: 470px) {
+	.card {
+		padding: 15px;
+	}
+	.card__cancel {
+		font-size: 14px;
+		padding: 10px 20px;
+	}
+	.card__price {
+		font-size: 16px;
+	}
+	.card__datetimes > p {
+		font-size: 16px;
+	}
+}
+@media (max-width: 431px) {
+	.content__title {
+		font-size: 30px;
+	}
+}
