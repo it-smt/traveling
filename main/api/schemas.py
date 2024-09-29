@@ -1,5 +1,4 @@
 from datetime import date
-import email
 from enum import Enum
 
 from ninja import ModelSchema, Schema

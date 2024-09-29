@@ -1,6 +1,5 @@
 import logging
 from datetime import datetime
-import os
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required

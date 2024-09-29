@@ -47,7 +47,7 @@ photoInput.addEventListener("change", () => {
 		if (["png", "jpeg", "jpg"].includes(fileCut[fileCut.length - 1])) {
 			let body = new FormData();
 			body.append("avatar", file);
-			fetch("http://127.0.0.1:8000/api/v1/main/change_user_data", {
+			fetch("/api/v1/main/change_user_data", {
 				method: "POST",
 				headers: {
 					Authorization: `Bearer ${authToken}`,
