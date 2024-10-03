@@ -21,12 +21,7 @@ urlpatterns = [
     path("logout/", logout_view, name="logout"),
     path("add_trip/", add_trip, name="add_trip"),
     path("remove_passenger/", remove_passenger, name="remove_passenger"),
-    path("add_passenger/<int:trip_id>/", add_passenger, name="add_passenger"),
-    path(
-        "handle_passenger_request/<int:notification_id>/<str:action>/",
-        handle_passenger_request,
-        name="handle_passenger_request",
-    ),
+    # path("add_passenger/<int:trip_id>/", add_passenger, name="add_passenger"),
     path("remove_passenger/<int:trip_id>/", remove_passenger, name="remove_passenger"),
     path("delete_trip/<int:trip_id>/", delete_trip, name="delete_trip"),
     path("leave_trip/<int:trip_id>/", leave_trip, name="leave_trip"),

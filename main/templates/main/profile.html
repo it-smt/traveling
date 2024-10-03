@@ -214,6 +214,7 @@
           </div>
         </div>
       </div>
+      <a href="{% url 'main:logout' %}" class="content__logout">Выйти</a>
     </div>
   </main>
 {% endblock content %}
@@ -226,8 +227,8 @@
         const valueElement = field.querySelector(".field__value");
         const inputElement = field.querySelector(".field__input input");
         let value = valueElement.textContent.trim();
-        if (value === "Не указано") {
-          value = "";
+        if (value.toLowerCase() === "не указано") {
+          value = null;
         }
         inputElement.value = value;
         valueElement.style.display = "none";
@@ -238,12 +239,11 @@
           fields.forEach((field_, index) => {
             const inputs = document.querySelectorAll("#dataInput");
             let value_ = dataInput[index].value;
-            if (value_ === "" || value_ === null) {
+            if (value_.trim().toLowerCase() == "" || value_.trim().toLowerCase() == null || value_.trim().toLowerCase() == "none") {
               value_ = null
             }
             data[fields[index].dataset.name] = value_;
           });
-          console.log(data);
           let body = new FormData();
           body.append("data", JSON.stringify(data));
           fetch(`/api/v1/main/change_user_data`, {
@@ -255,7 +255,6 @@
           })
             .then(response => response.json())
             .then(data => {
-              console.log(data);
               window.location.reload();
             })
             .catch(error => alert(error))

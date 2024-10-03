@@ -635,7 +635,11 @@ class CatalogView(ListView):
                     "arrival_time": trip["trip"].arrival_time.strftime("%H:%M"),
                     "duration_hours": trip["duration_hours"],
                     "duration_minutes": trip["duration_minutes"],
-                    "price": trip["trip"].price,
+                    "price": (
+                        str(trip["trip"].price).split(",", maxsplit=1)[0]
+                        if "," in str(trip["trip"].price)
+                        else trip["trip"].price
+                    ),
                 }
                 for trip in trips
             ]
@@ -809,34 +813,6 @@ def register(request):
 
 
 @csrf_exempt
-def add_passenger(request, trip_id):
-    if request.method == "POST":
-        try:
-            trip = get_object_or_404(Trip, id=trip_id)
-            user_profile = get_object_or_404(UserProfile, user=request.user)
-            if (
-                user_profile not in trip.passengers.all()
-                and user_profile not in trip.pending_passengers.all()
-                and trip.user != request.user
-            ):
-                if not trip.is_full:
-                    trip.pending_passengers.add(user_profile)
-                    Notification.objects.create(
-                        recipient=trip.user,
-                        sender=user_profile,
-                        trip=trip,
-                        message=f"{user_profile.user.username} хочет присоединиться к вашей поездке.",
-                    )
-                    return JsonResponse({"success": True})
-                else:
-                    return JsonResponse({"success": False, "error": "Trip is full"})
-            return JsonResponse({"success": False, "error": "Cannot add passenger"})
-        except Exception as e:
-            return JsonResponse({"success": False, "error": str(e)})
-    return JsonResponse({"success": False, "error": "Invalid request method"})
-
-
-@csrf_exempt
 def remove_passenger(request, trip_id):
     if request.method == "POST":
         try:
@@ -860,43 +836,6 @@ def remove_passenger(request, trip_id):
 def logout_view(request):
     logout(request)
     return redirect("main:login")
-
-
-@csrf_exempt
-def handle_passenger_request(request, notification_id, action):
-    if request.method == "POST":
-        try:
-            notification = get_object_or_404(Notification, id=notification_id)
-            trip = notification.trip
-            user_profile = notification.sender
-
-            if action == "accept":
-                if user_profile not in trip.passengers.all():
-                    trip.passengers.add(user_profile)
-                    trip.pending_passengers.remove(user_profile)
-                    Notification.objects.create(
-                        recipient=user_profile,
-                        sender=notification.recipient,
-                        trip=trip,
-                        message=f"Ваш запрос на присоединение к поездке был одобрен.",
-                    )
-                notification.read = True
-                notification.save()
-            elif action == "decline":
-                trip.pending_passengers.remove(user_profile)
-                Notification.objects.create(
-                    recipient=user_profile,
-                    sender=notification.recipient,
-                    trip=trip,
-                    message=f"Ваш запрос на присоединение к поездке был отклонен.",
-                )
-                notification.read = True
-                notification.save()
-
-            return JsonResponse({"success": True})
-        except Exception as e:
-            return JsonResponse({"success": False, "error": str(e)})
-    return JsonResponse({"success": False, "error": "Invalid request method"})
 
 
 # YANDEX_API_KEY = '#'

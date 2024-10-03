@@ -107,16 +107,18 @@ body {
 .trip__driver-avatar {
 	max-width: 50px;
 	max-height: 50px;
+	min-width: 50px;
+	min-height: 50px;
 	border-radius: 50%;
 	margin: 0 10px 0 0;
 	overflow: hidden;
 }
 
 .trip__driver-avatar img {
-	width: 100%;
-	height: 100%;
+	width: 50px;
+	height: 50px;
 	object-fit: cover;
-	object-position: center;
+	object-position: center center;
 }
 .trip__driver-info {
 }
@@ -152,7 +154,7 @@ body {
 .trip__places {
 	color: #5c5c5c;
 }
-.trip__select-button input {
+.trip__select-button {
 	display: block;
 	background-color: rgb(20, 111, 231);
 	color: #fff;
@@ -160,6 +162,7 @@ body {
 	padding: 8px 14px;
 	border-radius: 10px;
 	font-weight: 600;
+	cursor: pointer;
 }
 .trip__rules {
 }

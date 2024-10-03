@@ -59,27 +59,30 @@
                     </h1>
                 </a>
                 <div class="header-buttons">
-                    <div class="notifications">
-                        <span class="notifications__counter">225</span>
-                        <img src="{% static "img/icons/notification.svg" %}" id="notificationsMenuButton" alt="">
-                        <div class="notifications__menu menu" id="notificationsMenu">
-                            <span class="menu__close">X</span>
-                            <ul class="menu__list">
-                                <li class="menu__item">
-                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Incidunt iure, optio quae unde obcaecati dolor pariatur atque nulla eos. Consequatur voluptatum distinctio earum modi harum et fuga, in explicabo a?
-                                </li>
-                                <li class="menu__item">
-                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Incidunt iure, optio quae unde obcaecati dolor pariatur atque nulla eos. Consequatur voluptatum distinctio earum modi harum et fuga, in explicabo a?
-                                </li>
-                                <li class="menu__item">
-                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Incidunt iure, optio quae unde obcaecati dolor pariatur atque nulla eos. Consequatur voluptatum distinctio earum modi harum et fuga, in explicabo a?
-                                </li>
-                                <li class="menu__item">
-                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Incidunt iure, optio quae unde obcaecati dolor pariatur atque nulla eos. Consequatur voluptatum distinctio earum modi harum et fuga, in explicabo a?
-                                </li>
-                            </ul>
+                    {% if user.is_authenticated %}
+                        <div class="notifications">
+                            <span class="notifications__counter">0</span>
+                            <img src="{% static "img/icons/notification.svg" %}" id="notificationsMenuButton" alt="">
+                            <div class="notifications__menu menu" id="notificationsMenu">
+                                {% comment %} <span class="menu__close">X</span> {% endcomment %}
+                                <div class="menu__delete" id="deleteNotifications">Очистить все</div>
+                                <ul class="menu__list">
+                                    {% comment %} <li class="menu__item">
+                                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Incidunt iure, optio quae unde obcaecati dolor pariatur atque nulla eos. Consequatur voluptatum distinctio earum modi harum et fuga, in explicabo a?
+                                    </li>
+                                    <li class="menu__item">
+                                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Incidunt iure, optio quae unde obcaecati dolor pariatur atque nulla eos. Consequatur voluptatum distinctio earum modi harum et fuga, in explicabo a?
+                                    </li>
+                                    <li class="menu__item">
+                                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Incidunt iure, optio quae unde obcaecati dolor pariatur atque nulla eos. Consequatur voluptatum distinctio earum modi harum et fuga, in explicabo a?
+                                    </li>
+                                    <li class="menu__item">
+                                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Incidunt iure, optio quae unde obcaecati dolor pariatur atque nulla eos. Consequatur voluptatum distinctio earum modi harum et fuga, in explicabo a?
+                                    </li> {% endcomment %}
+                                </ul>
+                            </div>
                         </div>
-                    </div>
+                    {% endif %}
                     <a href="{% url "main:add_trip" %}">
                         <button class="add-trip" id="addButton">Добавить поездку</button>
                         <img src="{% static "img/plus_nav.svg" %}" alt="">
@@ -129,7 +132,73 @@
         {% endblock catalog %}
         {% block footer %}
         {% endblock footer %}
+        <script src="{% static "js/auth.js" %}"></script>
         <script src="{% static "js/header.script.js" %}"></script>
+        <script>
+            function eventListenerNotificationsBtns() {
+                const notificationsActions = document.querySelectorAll(".notification-action");
+
+                if (notificationsActions) {
+                    console.log(notificationsActions);
+                    notificationsActions.forEach((button) => {
+                        button.addEventListener("click", function () {
+                            const notificationId = this.dataset.notificationId;
+                            const action = this.dataset.action;
+                            console.log(
+                                `Обработка действия ${action} для уведомления с ID: ${notificationId}`
+                            );
+                            fetch(`/api/v1/main/handle_passenger_request?notification_id=${notificationId}&action=${action}`, {
+                                method: "POST",
+                                headers: {
+                                    "Authorization": `Bearer ${authToken.value}`
+                                },
+                            })
+                                .then(response => response.json())
+                                .then(data => {
+                                    if (data.success) {
+                                        this.parentNode.remove();
+                                    } else {
+                                        console.error(data.error);
+                                    }
+                                })
+                                .catch(error => {
+                                    console.error("There was a problem with the fetch operation:", error);
+                                });
+                        });
+                    });
+                }
+                const deleteAllNotifications = document.querySelector('#deleteNotifications');
+                const deleteNotificationsBtns = document.querySelectorAll('#deleteNotification');
+                
+                if (deleteAllNotifications && deleteNotificationsBtns) {
+                    deleteAllNotifications.addEventListener('click', () => {
+                        deleteNotification();
+                        deleteAllNotifications.parentNode.querySelector('.menu__list').innerHTML = '<p>Уведомлений нет</p>';
+                        deleteAllNotifications.parentNode.parentNode.querySelector('.notifications__counter').style = "display: none";
+                        deleteAllNotifications.remove()
+                    });
+                    let is_replace = false;
+                    deleteNotificationsBtns.forEach(btn => {
+                        btn.addEventListener('click', () => {
+                            deleteNotification(btn.dataset.id);
+                            btn.parentNode.parentNode.remove();
+                            let counter = deleteAllNotifications.parentNode.parentNode.querySelector('.notifications__counter');
+                            if (Number(counter.textContent) > 0) {
+                                counter.textContent = Number(counter.textContent) - 1
+                            }
+                            if (is_replace) {
+                                deleteAllNotifications.parentNode.querySelector('.menu__list').innerHTML = '<p>Уведомлений нет</p>';
+                                deleteAllNotifications.parentNode.parentNode.querySelector('.notifications__counter').style = "display: none";
+                                deleteAllNotifications.remove()
+                            }
+                            if (Number(counter.textContent) - 1 == 0) {
+                                is_replace = true;
+                            }
+                        })
+                    });
+                }
+            }
+        </script>
         <script src="{% static "js/notifications.script.js" %}"></script>
         {% block script %}
         {% endblock script %}

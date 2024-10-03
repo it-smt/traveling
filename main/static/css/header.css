@@ -11,6 +11,7 @@ header {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	width: 100vw;
 }
 
 .header-buttons {
@@ -19,7 +20,7 @@ header {
 	gap: 10px;
 }
 
-.header-buttons button {
+.header-buttons a button {
 	width: 240px;
 	height: 46px;
 	border-radius: 8px !important;
@@ -163,7 +164,7 @@ header h1 {
 		align-items: center;
 	}
 
-	.header-buttons button {
+	.header-buttons a button {
 		display: none;
 	}
 	.header-buttons a {
@@ -202,4 +203,41 @@ header h1 {
 		z-index: 10;
 		right: 0;
 	}
+}
+
+.notification-action {
+	margin: 5px 0 0 0;
+	display: block;
+	width: 100%;
+	text-align: center;
+	font-size: 16px;
+	color: #fff;
+	background-color: #000435;
+	padding: 5px 10px;
+	border-radius: 10px;
+}
+
+.menu__delete {
+	display: inline-block;
+	margin: 0 0 10px 0;
+	cursor: pointer;
+}
+.menu__delete:hover {
+	text-decoration: underline;
+}
+
+.menu__item-footer {
+	display: flex;
+	justify-content: space-between;
+	margin: 5px 0 0 0;
+}
+.menu__item-date {
+	color: #646464cc;
+}
+.menu__item-delete {
+	color: rgb(165, 0, 0);
+	cursor: pointer;
+}
+.menu__item-delete:hover {
+	text-decoration: underline;
 }

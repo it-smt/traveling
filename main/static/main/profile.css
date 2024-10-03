@@ -371,6 +371,22 @@
 	background-color: rgb(255, 109, 100);
 }
 
+.content__logout {
+	display: block;
+	text-align: center;
+	font-size: 24px;
+	background-color: rgb(255, 87, 78);
+	color: #fff;
+	padding: 15px;
+	border-radius: 20px;
+	margin: 20px 0 0 0;
+	transition: all 0.3s ease 0s;
+}
+
+.content__logout:hover {
+	background-color: rgb(255, 0, 0);
+}
+
 @media (max-width: 1220px) {
 	.content__row {
 		flex-direction: column;

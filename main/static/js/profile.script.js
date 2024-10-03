@@ -30,7 +30,7 @@ function getTrips(item) {
 	fetch(`/api/v1/main/get_trips?option=${option}`, {
 		method: "GET",
 		headers: {
-			Authorization: `Bearer ${authToken}`,
+			Authorization: `Bearer ${authToken.value}`,
 		},
 	})
 		.then(response => response.json())
@@ -50,7 +50,7 @@ photoInput.addEventListener("change", () => {
 			fetch("/api/v1/main/change_user_data", {
 				method: "POST",
 				headers: {
-					Authorization: `Bearer ${authToken}`,
+					Authorization: `Bearer ${authToken.value}`,
 				},
 				body: body,
 			})

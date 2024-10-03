@@ -254,5 +254,7 @@
     </section>
   </main>
   {% include "includes/footer.html" %}
-  <script src="{% static 'js/home.js' %}"></script>
 {% endblock content %}
+{% block script %}
+  <script src="{% static 'js/home.js' %}"></script>
+{% endblock script %}

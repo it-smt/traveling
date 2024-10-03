@@ -161,14 +161,12 @@
                                     </div>
                                 </div>
                                 <div class="trip__info">
-                                    <div class="trip__price">{{ trip.price }}</div>
+                                    <div class="trip__price">{{ trip.price | price_to_int }}</div>
                                     <div class="trip__places">осталось {{ trip.max_passengers }} места</div>
                                 </div>
-                                <form class="trip__select-button"
-                                      action="{% url "main:add_passenger" trip.id %}"
-                                      method="post">
-                                    <input value="Выбрать" type="submit">
-                                </form>
+                                <div class="trip__select-button"
+                                     id="tripSelectBtn"
+                                     data-id="{{ trip.id }}">Выбрать</div>
                             </div>
                         </div>
                         <div class="trip__rules">
@@ -243,6 +241,8 @@
             </button>
         </div>
     </div>
+{% endblock content %}
+{% block script %}
     <script src="{% static 'js/search.js' %}"></script>
     <script src="{% static "js/catalog.js" %}"></script>
-{% endblock content %}
+{% endblock script %}
